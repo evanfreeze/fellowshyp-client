@@ -1,7 +1,14 @@
 import Head from "next/head";
 import styles from "@/styles/Home.module.css";
+import { getDoc, doc } from "firebase/firestore";
+import { db } from "@/lib/firebase";
+import { InferGetServerSidePropsType } from "next";
 
-export default function Home() {
+export default function Home({
+  document,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) {
+  console.log(document);
+
   return (
     <>
       <Head>
@@ -18,4 +25,20 @@ export default function Home() {
       </main>
     </>
   );
+}
+
+export async function getServerSideProps() {
+  const docRef = doc(db, "tests", "BBJ6zFBKDc9YK5WePo0u");
+  const docSnap = await getDoc(docRef);
+  let document = null;
+
+  if (docSnap.exists()) {
+    document = docSnap.data();
+  }
+
+  return {
+    props: {
+      document,
+    },
+  };
 }

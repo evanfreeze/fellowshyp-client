@@ -1,5 +1,4 @@
 import Head from "next/head";
-import styles from "@/styles/Home.module.css";
 import { getDoc, doc } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import { InferGetServerSidePropsType } from "next";
@@ -20,8 +19,12 @@ export default function Home({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={styles.main}>
+      <main>
         <h1>Welcome to The Fellowshyp</h1>
+        <div>
+          <input type="text" />
+          <button>Sign in</button>
+        </div>
       </main>
     </>
   );
